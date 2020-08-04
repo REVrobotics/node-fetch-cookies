@@ -1,4 +1,3 @@
-import {promises as fs} from "fs";
 import url from "url";
 import Cookie from "./cookie.mjs";
 import {paramError, CookieParseError} from "./errors.mjs";
@@ -96,19 +95,9 @@ export default class CookieJar {
         validCookies.forEach(c => this.addCookie(c));
     }
     async load(file = this.file) {
-        if (typeof file !== "string")
-            throw new Error("No file has been specified for this cookie jar!");
-        JSON.parse(await fs.readFile(file)).forEach(c =>
-            this.addCookie(Cookie.fromObject(c))
-        );
+        throw new Error("This version doesn't support saving to a file");
     }
     async save(file = this.file) {
-        if (typeof file !== "string")
-            throw new Error("No file has been specified for this cookie jar!");
-        // only save cookies that haven't expired
-        await fs.writeFile(
-            this.file,
-            JSON.stringify([...this.cookiesValid(false)])
-        );
+        throw new Error("This version doesn't support saving to a file");
     }
 }
