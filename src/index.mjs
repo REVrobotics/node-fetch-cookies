@@ -36,6 +36,8 @@ async function fetch(cookieJars, url, options) {
     const wantFollow =
         !options || !options.redirect || options.redirect === "follow";
     if (!options && (cookies || wantFollow)) options = {};
+    console.log("fetch() cookies:);
+    console.log(cookies);
     if (cookies) {
         if (!options.headers) options.headers = {};
         options.headers.cookie = cookies.slice(0, -2);
